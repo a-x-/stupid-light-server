@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const child_process = require('child_process')
-const getStatus = () => parseInt(child_process.execSync('/usr/local/bin/gpio -1 read 22', {encoding: 'utf8'}), 10);
+const getStatus = () => parseInt(child_process.execSync('gpio -1 read 22', {encoding: 'utf8'}), 10);
 
 app.get('/', function (req, res) {
   const status = getStatus();
@@ -13,17 +13,17 @@ app.get('/', function (req, res) {
 });
 
 app.get('/on', (req, res) => {
-  child_process.exec('/usr/local/bin/gpio -1 write 22 1');
+  child_process.exec('light 1');
   res.end('<html><head><meta http-equiv="refresh" content="3;url=/"></head><boby>sent</body></html>');
 });
 
 app.get('/status', (req, res) => {
   const status = getStatus();
-  res.end(status);
+  res.end(status ? 'on' : 'off');
 });
 
 app.get('/off', (req, res) => {
-  child_process.exec('/usr/local/bin/gpio -1 write 22 0');
+  child_process.exec('light 0');
   res.end('<html><head><meta http-equiv="refresh" content="3;url=/"></head><boby>sent</body></html>');
 });
 

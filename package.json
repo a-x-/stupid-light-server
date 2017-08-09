@@ -8,7 +8,8 @@
   },
   "author": "invntrm",
   "license": "ISC",
-  "devDependencies": {
-    "generator-react-express-webpack-babel": "^2.2.1"
+  "devDependencies": {},
+  "dependencies": {
+    "express": "^4.15.4"
   }
 }
